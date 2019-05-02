@@ -6,8 +6,11 @@ dashboardPage(
   
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Statistics", tabName = "Stat", icon = icon("id-badge")),
-      menuItem("Rankings", tabName = "Rank", icon = icon("list-ol"))
+      selectInput("sex", "Sex:",
+                  levels(df$sex)),
+      selectInput("ethnicity", "Ethnicity:",
+                 levels(df$race_ethnicity))
+      
     )
   ),
   
