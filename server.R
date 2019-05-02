@@ -1,12 +1,3 @@
-library(shinydashboard)
-library(dplyr)
-
-df <- read.socrata(
-  "https://data.cityofnewyork.us/resource/jb3k-j3gp.json",
-  app_token = "UfW6jtIJQkatfeOZKHlUr60aD",
-  email     = "bklingenberg@ncf.edu",
-  password  = "Hansa888!"
-)  
 df.date <- df %>% select(expiration_date)
 df.date.year <- df.date %>% mutate(Year = format(expiration_date, "%Y")) %>% count(Year, sort=TRUE)
 
