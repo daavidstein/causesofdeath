@@ -1,4 +1,5 @@
-
+library(data.table)
+library(DT)
 
 dashboardPage(
   
@@ -6,15 +7,27 @@ dashboardPage(
   
   dashboardSidebar(
     sidebarMenu(
-      selectInput("sex", "Sex:",
-                  levels(df$sex)),
+      # 
+      # selectInput("sex", "Sex:",
+      #             levels(as.factor(df$sex))),
+      radioButtons("sex", "Sex:",
+                   choiceNames = list(
+                     "Female",
+                     "Male"
+                     
+                   ),
+                   choiceValues = list(
+                     "Female", "Male"
+                   )),
       selectInput("ethnicity", "Ethnicity:",
-                 levels(df$race_ethnicity))
+                 levels(as.factor(df$race_ethnicity)))
       
     )
   ),
   
   dashboardBody(
+    dataTableOutput("myhead")
+    
     # tabItems(
     #   tabItem(tabName = "Stat",
     #     h2("Expiration of Licenses"),

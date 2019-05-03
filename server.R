@@ -2,7 +2,19 @@
 # df.date.year <- df.date %>% mutate(Year = format(expiration_date, "%Y")) %>% count(Year, sort=TRUE)
 
 shinyServer(function(input, output, session) {
-# 
+  
+  df <- read.socrata(
+    "https://data.cityofnewyork.us/resource/uvxr-2jwn.json",
+    app_token = "EBAtfYRrKbo7tiR4nlngkKp1M",
+    email     = "james.trimarco@gmail.com",
+    password  = "chromo*8Remount"
+  )  
+ 
+  
+  output$myhead <- renderDataTable({df %>% filter(sex == input$sex | sex == strsplit(input$sex, "")[[1]][1], race_ethnicity == input$ethnicity)})
+  
+  
+  
 #   output$exp2019 <- renderInfoBox({
 #     infoBox(
 #       value = format(df.date.year$n[1], big.mark=","),
